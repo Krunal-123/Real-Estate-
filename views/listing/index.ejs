@@ -1,0 +1,288 @@
+<%layout('/layout/boilerplate')%>
+<style>
+    img{
+        width: 100%;
+        height: 400px;
+    }
+    .flickity-page-dots{
+        display: none;
+    }
+/* tab icons */
+    .wrapper {
+  /* padding: 15px; */
+  position: relative;
+  overflow-x: hidden;
+  /* max-width: 1000px; */
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 13px;
+}
+.wrapper .icon {
+  position: absolute;
+  top: 0;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.icon:first-child {
+  left: 0;
+  display: none;
+  /* background: linear-gradient(90deg,transparent  70%, transparent); */
+}
+.icon:last-child {
+  right: 0;
+  justify-content: flex-end;
+  /* background: linear-gradient(-90deg, transparent 70%, transparent); */
+}
+.icon i {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  background: black;
+}
+.wrapper .tabs-box {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.tabs-box.dragging {
+  scroll-behavior: auto;
+  cursor: grab;
+}
+.tabs-box .tab {
+  cursor: pointer;
+  font-size: 1.18rem;
+  white-space: nowrap;
+  padding: auto 15px;
+  margin-top: 20px;
+}
+.tabs-box .tab:hover{
+    opacity: 0.6;
+}
+.tabs-box.dragging .tab {
+  user-select: none;
+  pointer-events: none;
+}
+.tabs-box .tab.active {
+    opacity: 0.7;
+    border-bottom:3px solid black ;
+}
+.tabs-box li img{
+    width: 25px;
+    height: 25px;
+}
+.tabs-box li p{
+    font-size: 0.9rem;
+}
+</style>
+<body>
+    <div class="container-fluid">
+        <div class="wrapper">
+            <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
+            <ul class="tabs-box text-center">
+                <li class="tab">               
+                    <a href="/index/?category=mountain">
+                        <img src="https://img.icons8.com/?size=100&id=25055&format=png&color=000000" alt="">
+                        <p>Mountain</p>
+                    </a>
+                </li>
+                <li class="tab">
+                    <a href="/index/?category=beach">
+                        <img src="https://img.icons8.com/?size=100&id=TVhhy0_xRMpM&format=png&color=000000" alt="">
+                        <p>Beach</p>
+                    </a>
+                </li>
+                <li class="tab">              
+                    <a href="/index/?category=lake">
+                        <img src="https://img.icons8.com/?size=100&id=3023&format=png&color=000000" alt="">
+                        <p>lake</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=city">
+                        <img src="https://img.icons8.com/?size=100&id=ZlnMPbsp4rwH&format=png&color=000000" alt="">
+                        <p>City</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=forest">
+                        <img src="https://img.icons8.com/?size=100&id=HCSS0dVYr3ev&format=png&color=000000" alt="">
+                        <p>Forest</p>
+                    </a>
+                </li>    
+                <li class="tab">                    
+                    <a href="/index/?category=village">
+                        <img src="https://img.icons8.com/?size=100&id=TBew8DowKOCP&format=png&color=000000" alt="">
+                        <p>Village</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=hotels">
+                        <img src="https://img.icons8.com/?size=100&id=1QtBWO94Hkwh&format=png&color=000000" alt="">
+                        <p>Hotels</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=fishing">
+                        <img src="https://img.icons8.com/?size=100&id=7kOavFvh2Viw&format=png&color=000000" alt="">
+                        <p>Fishing</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=statue">
+                        <img src="https://img.icons8.com/?size=100&id=j6aUarKPNeYI&format=png&color=000000" alt="">
+                        <p>Statues</p>
+                    </a>
+                </li>
+                <li class="tab">                   
+                    <a href="/index/?category=cafe">
+                        <img src="https://img.icons8.com/?size=100&id=uafgs7cnHaoi&format=png&color=000000" alt="">
+                        <p>Cafe</p>
+                    </a>
+                </li>
+                <li class="tab">                   
+                    <a href="/index/?category=playground">
+                        <i class="fa-brands fa-dribbble"></i>
+                        <p>PlayGround</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=zoo">
+                        <i class="fa-solid fa-hippo"></i>
+                        <p>Zoo</p>
+                    </a>
+                </li>                <li class="tab">                    
+                    <a href="/index/?category=island">
+                        <img src="https://img.icons8.com/?size=100&id=NEQRj9jAWRbb&format=png&color=000000" alt="">
+                        <p>Island</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=camping">
+                        <img src="https://img.icons8.com/?size=100&id=w__qqctb2bQ4&format=png&color=000000" alt="">
+                        <p>Camping</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=birds">
+                        <img src="https://img.icons8.com/?size=100&id=Ba5jqcj1OKqQ&format=png&color=000000" alt="">
+                        <p>Birds Vist</p>
+                    </a>
+                </li>
+                <li class="tab">                    
+                    <a href="/index/?category=framhouse">
+                        <img src="https://img.icons8.com/?size=100&id=syK7tyGrl9SD&format=png&color=000000" alt="">
+                        <p>FramHouse</p>
+                    </a>
+                </li>                <li class="tab">                    
+                    <a href="/index/?category=pool">
+                        <img src="https://img.icons8.com/?size=100&id=GXScTf3aNTd6&format=png&color=000000" alt="">
+                        <p>Amazing Pool</p>
+                    </a>
+                </li>                
+                <li class="tab">                    
+                    <a href="/index/?category=historical">
+                        <img src="https://img.icons8.com/?size=100&id=grWVZnZqHOVz&format=png&color=000000"alt="">
+                        <p>Historical Place</p>
+                    </a>
+                </li>      <li class="tab">                    
+                    <a href="/index/?category=boating">
+                        <img src="https://img.icons8.com/?size=100&id=40655&format=png&color=000000" alt="">
+                        <p>Boating</p>
+                    </a>
+                </li>      <li class="tab">                    
+                    <a href="/index/?category=rooms">
+                        <img src="https://img.icons8.com/?size=100&id=hI8Z5yfrLcE0&format=png&color=000000" alt="">
+                        <p>Rooms</p>
+                    </a>
+                </li>      <li class="tab">                    
+                    <a href="/index/?category=nationalpark">
+                        <img src="https://img.icons8.com/?size=100&id=25703&format=png&color=000000" alt="">
+                        <p>National Park</p>
+                    </a>
+                </li><li class="tab">                    
+                    <a href="/index/?category=arctic">
+                        <img src="https://img.icons8.com/?size=100&id=qCab029wU4uY&format=png&color=000000" alt="">
+                        <p>Arctic</p>
+                    </a>
+                </li><li class="tab">                    
+                    <a href="/index/?category=desert">
+                        <img src="https://img.icons8.com/?size=100&id=mandMgSZZ5Z6&format=png&color=000000" alt="">
+                        <p>Desert</p>
+                    </a>
+                </li><li class="tab">                    
+                    <a href="/index/?category=dj">
+                        <img src="https://img.icons8.com/?size=100&id=7uASg8wDoJrm&format=png&color=000000" alt="">
+                        <p>DJ Clubs</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
+          </div>
+
+        <div class="text-center">
+            <%for(i of list){%>
+                <a href="/show/<%=i._id%>">
+                    <div class="card  border-0" style="width: 19rem;">
+                        <img src="<%=i.image.path%>" class="card-img-top" alt="...">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                            <h5 class="card-title text-green-500"><%=i.title%></h5>
+                            <p class="card-text">Price: <%=i.price.toLocaleString("en-IN")%> /per day</p>
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+            </div>
+<script>const tabsBox = document.querySelector('.tabs-box'),
+    allTabs = tabsBox.querySelectorAll('.tab'),
+    arrowIcons = document.querySelectorAll('.icon i')
+  
+  let isDragging = false
+  
+  const handleIcons = scrollVal => {
+    let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth
+    arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? 'none' : 'flex'
+    arrowIcons[1].parentElement.style.display =maxScrollableWidth - scrollVal <= 1 ? 'none' : 'flex'
+  }
+  
+  arrowIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      // if clicked icon is left, reduce 350 from tabsBox scrollLeft else add
+      let scrollWidth = (tabsBox.scrollLeft += icon.id === 'left' ? -340 : 340)
+      handleIcons(scrollWidth)
+    })
+  })
+  
+  allTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        if (tabsBox.querySelector(".active")) {
+            tabsBox.querySelector('.active').classList.remove('active')
+        }
+      tab.classList.add('active')
+    })
+  })
+  
+  const dragging = e => {
+    if (!isDragging) return
+    tabsBox.classList.add('dragging')
+    tabsBox.scrollLeft -= e.movementX
+    handleIcons(tabsBox.scrollLeft)
+  }
+  
+  const dragStop = () => {
+    isDragging = false
+    tabsBox.classList.remove('dragging')
+  }
+  
+  tabsBox.addEventListener('mousedown', () => (isDragging = true))
+  tabsBox.addEventListener('mousemove', dragging)
+  document.addEventListener('mouseup', dragStop)</script>
+</body>

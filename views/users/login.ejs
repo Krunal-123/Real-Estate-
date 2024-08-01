@@ -1,0 +1,50 @@
+<%layout('./layout/boilerplate.ejs')%>
+<style>
+  .f{
+    position: absolute !important;
+    bottom: 0px !important;
+    width: 100%;
+  }
+  .form{
+    width: 50%;
+    margin: auto;
+  }
+</style>
+<body>
+    <div class="container my-5">
+        <form class="form needs-validation" action="/login" method="post" novalidate>
+            <!-- <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter user-email.
+              </div>
+            </div> -->
+            <div class="md-4">
+              <label for="validationCustom01" class="form-label">User name</label>
+              <input type="text" class="form-control" id="validationCustom01" name="username" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                  Please enter user-name.
+                </div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter password.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+           <!-- <a href="/singup" class="btn btn-danger">SingUp</a> -->
+          </form>
+    </div>
+</body>

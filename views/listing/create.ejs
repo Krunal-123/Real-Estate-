@@ -1,0 +1,110 @@
+<%layout('/layout/boilerplate')%>
+<style>
+  input[type="file"] {
+  display: inline;
+}
+.imageThumb {
+  width: 700px;
+  max-height: 300px;
+  cursor: pointer;
+}
+.pip {
+  display: inline-block;
+  margin-left: 10px;
+}
+.remove {
+  display: block;
+  border: 1px solid white;
+  background: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: red;
+}
+</style>
+<body>
+    <form action="/create/add" method="post" class="needs-validation container" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" value="" class="form-control" id="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea  class="form-control" name="description" cols="30" rows="6" id="" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="img" class="form-label">URL:</label>
+            <input type="file" name="img"  class="form-control" id="files" required>
+          </div>
+          <label for="Category">Category:</label>
+          <select class="form-select mb-3" aria-label="Default select example" name="category" id="Category" required>
+            <option selected>--Select--</option>
+            <option value="mountain">Mountain Place</option>
+            <option value="beach">Beach Place</option>
+            <option value="lake">Lake Area</option>
+            <option value="city">City</option>
+            <option value="forest">Forest Area</option>
+            <option value="village">Village Place</option>
+            <option value="hotels">Hotels</option>
+            <option value="fishing">Fishing Area</option>
+            <option value="statue">Statues Place</option>
+            <option value="cafe">Cafe</option>
+            <option value="playground">PlayGround</option>
+            <option value="zoo">Zoo Place</option>
+            <option value="island">Island</option>
+            <option value="camping">Camping</option>
+            <option value="birds">Birds Vist</option>
+            <option value="framhouse">Farm-House</option>
+            <option value="pool">Swimming Pool</option>
+            <option value="historical">Historical Place</option>
+            <option value="boating">Boating Place</option>
+            <option value="rooms">Rooms</option>
+            <option value="nationalpark">National Park</option>
+            <option value="arctic">Arctic Place</option>
+            <option value="desert">Desert Place</option>
+            <option value="dj">DJ Clubs</option>
+          </select>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input type="text" name="price"  value="" class="form-control" id="price"required>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" name="location"  value="" class="form-control" id="location" required>
+          </div>
+        <div class="d-flex justify-content-around">
+            <a class="btn btn-outline-dark m-0" href="/index">Go Back</a>
+            <input class="btn btn-outline-danger px-4" type="submit" value="ADD">
+        </div>
+    </form>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+        if (window.File && window.FileList && window.FileReader) {
+            $("#files").on("change", function(e) {
+                var files = e.target.files,
+                filesLength = files.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i]
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function(e) {
+                        var file = e.target;
+                        $("<div class=\"pip\">" +
+                            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                            "<br/><span class=\"remove\"><i class='fa-solid fa-xmark'></i></span>" +
+                            "</div>").insertBefore("#files");
+                            $(".remove").click(function(){
+                                $(this).parent(".pip").remove();
+                            });
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support to File API")
+            }
+        });
+    </script>

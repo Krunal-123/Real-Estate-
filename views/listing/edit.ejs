@@ -1,0 +1,112 @@
+<%layout('/layout/boilerplate')%>
+<style>
+.imageThumb {
+  width: 500px;
+  max-height: 300px;
+  cursor: pointer;
+}
+.pip {
+  display: inline;
+  margin-left: 10px;
+}
+.remove {
+  display: inline;
+  border: 1px solid white;
+  background: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: red;
+}
+</style>
+<body>
+    <form action="/update/<%=edit._id%>/?_method=PATCH" method="post" class="container" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" value="<%=edit.title%>" class="form-control" id="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea  class="form-control" name="description" cols="30" rows="6" id="" required><%=edit.description%></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="img" class="form-label">URL:</label>
+        <input type="file" name="img"  class="form-control" id="files" >
+        <div >
+          <img src="<%=edit.image.path%>" alt="" style="width: 500px; height: 300px;" class="here">
+        </div>
+        <input type="hidden" name="filename" value="<%=edit.image.filename%>"class="hidden">
+        <input type="hidden" name="path" value="<%=edit.image.path%>"class="hidden">
+      </div>
+      <label for="Category">Category:</label>
+      <select class="form-select mb-3" aria-label="Default select example" name="category" id="Category" required>
+        <option selected>--<%=edit.category%>--</option>
+        <option value="mountain">Mountain Place</option>
+        <option value="beach">Beach Place</option>
+        <option value="lake">Lake Area</option>
+        <option value="city">City</option>
+        <option value="forest">Forest Area</option>
+        <option value="village">Village Place</option>
+        <option value="hotels">Hotels</option>
+        <option value="fishing">Fishing Area</option>
+        <option value="statue">Statues Place</option>
+        <option value="cafe">Cafe</option>
+        <option value="playground">PlayGround</option>
+        <option value="zoo">Zoo Place</option>
+        <option value="island">Island</option>
+        <option value="camping">Camping</option>
+        <option value="birds">Birds Vist</option>
+        <option value="framhouse">Farm-House</option>
+        <option value="pool">Swimming Pool</option>
+        <option value="historical">Historical Place</option>
+        <option value="boating">Boating Place</option>
+        <option value="rooms">Rooms</option>
+        <option value="nationalpark">National Park</option>
+        <option value="arctic">Arctic Place</option>
+        <option value="desert">Desert Place</option>
+        <option value="dj">DJ Clubs</option>
+      </select>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input type="text" name="price"  value="<%=edit.price%>" class="form-control" id="price"required>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" name="location"  value="<%=edit.location%>" class="form-control" id="location" required>
+      </div>
+        <div class="d-flex justify-content-around">
+            <a class="btn btn-outline-dark px-4 py-3 m-0" href="/show/<%=edit._id%>">Go Back</a>
+            <input class="btn btn-outline-success px-4 py-3" type="submit" value="Update">
+        </div>
+    </form>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+        if (window.File && window.FileList && window.FileReader) {
+            $("#files").on("change", function(e) {
+                var files = e.target.files,
+                filesLength = files.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i]
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function(e) {
+                        var file = e.target;
+                        $("<span class=\"pip\">" +
+                            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                            "<br/><span class=\"remove\"><i class='fa-solid fa-xmark'></i></span>" +
+                            "</span>").insertAfter(".here");
+                            $(".remove").click(function(){
+                                $(this).parent(".pip").remove();
+                            });
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support to File API")
+            }
+        });
+    </script>
